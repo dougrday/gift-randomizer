@@ -1,3 +1,3 @@
-Traci,1
-Laurie,2
-Doug,3
+Traci & Tom,1
+Laurie & Scott,2
+Doug & Brittney,3
