@@ -2,15 +2,23 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// Get the suffix from the command-line argument
+const suffix = process.argv[2] || '';
+const filePrefix = suffix ? `-${suffix}` : '';
+
 // Paths to the input files
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const namesFile = path.join(__dirname, 'names.txt');
-const historyFile = path.join(__dirname, 'history.txt');
+const namesFile = path.join(__dirname, `names${filePrefix}.txt`);
+const historyFile = path.join(__dirname, `history${filePrefix}.txt`);
 
 // Load names and families from the names.txt file
 function loadNames(filePath) {
+    if (!fs.existsSync(filePath)) {
+        console.error(`Names file not found: ${filePath}`);
+        process.exit(1);
+    }
     const content = fs.readFileSync(filePath, 'utf-8').trim();
     return content.split('\n').map(line => {
         const [name, family] = line.split(',').map(item => item.trim());
@@ -87,8 +95,8 @@ function main() {
         process.exit(1);
     }
 
-    console.log('Loaded participants:', participants);
-    console.log('Loaded historical pairs:', Array.from(history));
+    console.log(`Loaded participants from ${namesFile}:`, participants);
+    console.log(`Loaded historical pairs from ${historyFile}:`, Array.from(history));
 
     try {
         const newPairs = generateMatching(participants, history);
