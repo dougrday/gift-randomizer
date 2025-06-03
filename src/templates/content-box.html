@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Box</title>
+    <link rel="stylesheet" href="/assets/css/content-box.class.css" />
+    <script src="{% use 'randomize.mjs' %}"></script>
+</head>
+<body>
+    <div class="content-box">
+        <h1>{% block header %}</h1>
+        <p class="template-text">{% block content %}</p>
+        <form>
+            <input type="text" class="content-input" placeholder="Enter name..." id="nameInput" />
+            <select class="content-select" id="roleSelect">
+                <option value="" disabled selected {% if role %}selected{% endif %}>{% if role %}Role{% endif %}</option>
+                <option value="root">Root User</option>
+            </select>
+        </form>
+    </div>
+</body>
+</html>
