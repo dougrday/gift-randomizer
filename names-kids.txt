@@ -1,4 +1,3 @@
-Ethan,1
 Parker,1
 Miles,1
 Scarlett,1
