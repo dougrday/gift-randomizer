@@ -102,7 +102,7 @@ function main() {
         const newPairs = generateMatching(participants, history);
 
         console.log('Generated new pairs:');
-        console.log(newPairs.map(pair => `${pair.giver.name} -> ${pair.receiver.name}`).join('\n'));
+        console.log(newPairs.map(pair => `${pair.giver.name} → ${pair.receiver.name}`).join('\n'));
 
         // Save new pairs to history
         saveHistory(historyFile, newPairs);
